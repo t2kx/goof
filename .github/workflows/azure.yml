@@ -23,7 +23,7 @@ jobs:
     name: Build and Deploy
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@master
     - name: Use Node.js ${{ env.NODE_VERSION }}
       uses: actions/setup-node@v1
       with:
@@ -39,5 +39,4 @@ jobs:
       uses: azure/webapps-deploy@v1
       with:
         app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        creds: ${{ secrets.azureWebAppPublishProfile }} 
-        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        publish-profile: ${{ secrets.azureWebAppPublishProfile }}
