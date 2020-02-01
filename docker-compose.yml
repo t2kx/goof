@@ -1,7 +1,7 @@
 version: "3"
 services:
     goof-mongo:
-    container_name: goof-mongo
+    container_name: goofmongo
     image: mongo
     ports:
       - "27017:27017"
