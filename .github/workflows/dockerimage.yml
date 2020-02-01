@@ -6,8 +6,12 @@ jobs:
     steps:
     - uses: actions/checkout@master
     - name: Publish to Registry
-      uses: mongo-express
       with:
+        mongodb-version: "4.2.4"
         name: mongo-express
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
+    - name: Launch MongoDB
+      uses: _/mongo@v4.2.4
+      with:
+        mongoDBVersion: ${{ matrix.mongodb-version }}
