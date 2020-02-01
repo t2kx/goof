@@ -1,18 +1,16 @@
-name: Publish Docker Mongod DB Container
 on: [push]
+
 jobs:
-  build:
+  StartMongoDBAsDocker:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        mongodb-version: ["4.0", "4.2"] 
+    name: Start MongoDB ${{ matrix.mongodb-version }}
     steps:
-    - uses: actions/checkout@master
-    - name: Publish to Registry
-      with:
-        mongodb-version: "4.2.4"
-        name: mongo-express
-        uses: _/mongo@v4.2.4 
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
-    - name: Launch MongoDB
-      uses: _/mongo@v4.2.4
-      with:
-        mongoDBVersion: ${{ matrix.mongodb-version }}
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Start MongoDB As Docker
+        uses: ./
+        with:
+          mongoDBVersion: ${{ matrix.mongodb-version }}
