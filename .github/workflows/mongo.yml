@@ -1,0 +1,17 @@
+name: mongo
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+
+    steps:
+    - uses:  shehackspurple/mongo-action@v1.1
+      with:
+        mongo version: '4.2-bionic'
+        host port: 27017
+        mongo username: 'root'
+        mongo password: 'Yaeph0Ai'
